@@ -20,7 +20,13 @@ class CountryListPick extends StatefulWidget {
       this.countryBuilder,
       this.theme,
       this.useUiOverlay = true,
-      this.useSafeArea = false});
+      this.useSafeArea = false,
+      this.backgroundColor,
+      this.systemNavigationColor,
+      this.appBarContainerColor,
+      this.searchFieldColor,
+      this.lastPickBackgroundColor,
+      });
 
   final String? initialSelection;
   final ValueChanged<CountryCode?>? onChanged;
@@ -32,6 +38,12 @@ class CountryListPick extends StatefulWidget {
       countryBuilder;
   final bool useUiOverlay;
   final bool useSafeArea;
+  //here starts custom color
+  final Color? backgroundColor;
+  final Color? systemNavigationColor;
+  final Color? appBarContainerColor;
+  final Color? searchFieldColor;
+  final Color? lastPickBackgroundColor;
 
   @override
   _CountryListPickState createState() {
@@ -89,6 +101,11 @@ class _CountryListPickState extends State<CountryListPick> {
             countryBuilder: widget.countryBuilder,
             useUiOverlay: widget.useUiOverlay,
             useSafeArea: widget.useSafeArea,
+            backgroundColor: widget.backgroundColor,
+            systemNavigationColor: widget.systemNavigationColor,
+            appBarContainerColor: widget.appBarContainerColor,
+            searchFieldColor: widget.searchFieldColor,
+            lastPickBackgroundColor: widget.lastPickBackgroundColor,
           ),
         ));
 

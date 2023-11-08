@@ -11,7 +11,13 @@ class SelectionList extends StatefulWidget {
       this.theme,
       this.countryBuilder,
       this.useUiOverlay = true,
-      this.useSafeArea = false})
+      this.useSafeArea = false,
+      this.backgroundColor,
+      this.systemNavigationColor,
+      this.appBarContainerColor,
+      this.searchFieldColor,
+      this.lastPickBackgroundColor,
+      })
       : super(key: key);
 
   final PreferredSizeWidget? appBar;
@@ -21,6 +27,12 @@ class SelectionList extends StatefulWidget {
   final Widget Function(BuildContext context, CountryCode)? countryBuilder;
   final bool useUiOverlay;
   final bool useSafeArea;
+  //here starts custom color
+  final Color? backgroundColor;
+  final Color? systemNavigationColor;
+  final Color? appBarContainerColor;
+  final Color? searchFieldColor;
+  final Color? lastPickBackgroundColor;
 
   @override
   _SelectionListState createState() => _SelectionListState();
@@ -67,7 +79,7 @@ class _SelectionListState extends State<SelectionList> {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.white,
+        systemNavigationBarColor: widget.systemNavigationColor ?? Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
         statusBarBrightness: !kIsWeb ? Brightness.dark : Brightness.light,
       ));
@@ -75,7 +87,7 @@ class _SelectionListState extends State<SelectionList> {
     Widget scaffold = Scaffold(
       appBar: widget.appBar,
       body: Container(
-        color: Color(0xfff4f4f4),
+        color: widget.systemNavigationColor ?? Color(0xfff4f4f4),
         child: LayoutBuilder(builder: (context, contrainsts) {
           diff = height - contrainsts.biggest.height;
           _heightscroller = (contrainsts.biggest.height) / _alphabet.length;
@@ -100,7 +112,7 @@ class _SelectionListState extends State<SelectionList> {
                           ),
                         ),
                         Container(
-                          color: Colors.white,
+                          color: widget.searchFieldColor ?? Colors.white,
                           child: TextField(
                             controller: _controller,
                             decoration: InputDecoration(
@@ -127,7 +139,7 @@ class _SelectionListState extends State<SelectionList> {
                           ),
                         ),
                         Container(
-                          color: Colors.white,
+                          color: widget.lastPickBackgroundColor ?? Colors.white,
                           child: Material(
                             color: Colors.transparent,
                             child: ListTile(
@@ -188,7 +200,7 @@ class _SelectionListState extends State<SelectionList> {
   Widget getListCountry(CountryCode e) {
     return Container(
       height: 50,
-      color: Colors.white,
+      color: widget.backgroundColor ?? Colors.white,
       child: Material(
         color: Colors.transparent,
         child: ListTile(
